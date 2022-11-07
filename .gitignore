@@ -1,0 +1,4 @@
+﻿HostInitActions/.vs
+*\bin
+*\obj
+*.user
