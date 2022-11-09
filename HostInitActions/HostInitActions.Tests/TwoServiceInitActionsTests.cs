@@ -12,7 +12,7 @@ namespace HostInitActions.Tests
         public async Task TwoServiceInitialization_OneInitAction()
         {
             // ARRANGE
-            var host = Host
+            using var host = Host
                 .CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
@@ -43,14 +43,13 @@ namespace HostInitActions.Tests
 
             // CLEANUP
             await host.StopAsync();
-            host.Dispose();
         }
 
         [Test]
         public async Task TwoServiceInitialization_OneInitAction_NoneCancellationToken()
         {
             // ARRANGE
-            var host = Host
+            using var host = Host
                 .CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
@@ -81,7 +80,6 @@ namespace HostInitActions.Tests
 
             // CLEANUP
             await host.StopAsync();
-            host.Dispose();
         }
     }
 }

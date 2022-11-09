@@ -9,3 +9,8 @@ internal interface ITestInitService
 
     public Task Init(CancellationToken cancellationToken);
 }
+
+internal interface ITestInitService2 : ITestInitService {}
+internal interface ITestInitService3 : ITestInitService {}
+internal interface ITestInitService4 : ITestInitService {}
+internal interface ITestInitService5 : ITestInitService {}

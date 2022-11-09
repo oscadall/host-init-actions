@@ -1,6 +1,6 @@
 # Host init actions
 
-This is a simple library for defining asynchronous operations to be performed before the application starts. Typically, it is an asynchronous initialization of singleton services registered in an IoC container. This means that there is no need to perform this initialization in a blocking manner before registering to the IoC container. This library creates support for these asynchronous operations inside the runtime of all IHosts. For example, within a regular WebHost in an ASP.NET Core application.
+This is a simple library for defining asynchronous operations to be performed before the application starts. Typically, it is an asynchronous initialization of singleton services registered in an IoC container. This means that there is no need to perform this initialization in a blocking manner before registering to the IoC container. HostInitActions are based on the IHostedService implementation, which means they only work in IHost implementation environments that support the IHostedService work flow. For example, within a regular WebHost in an ASP.NET Core application.
 
 ## Registration of initialization actions
 
@@ -38,7 +38,7 @@ You can define multiple init actions and they will be executed sequentially in t
         });
 ```
 
-It is also possible to define more services (max 4) for one init action in case you need to have better control over the execution of individual initializations.
+It is also possible to define more services (max 5) for one init action in case you need to have better control over the execution of individual initializations.
 
 ```csharp
  services.AddAsyncServiceInitialization()
