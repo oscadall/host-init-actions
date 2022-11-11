@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>HostInitActions</id>
+    <version>1.0.1</version>
+    <authors>oscadall</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <!-- <icon>icon.png</icon> -->
+    <projectUrl>https://github.com/oscadall/host-init-actions</projectUrl>
+    <repository type="git" url="https://github.com/oscadall/host-init-actions"/>
+    <description>Allows you to define asynchronous initialization actions for services in a Host's ServiceProvider</description>
+    <!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
+    <tags>ASP.NET core async init initialization service host</tags>
+    <dependencies>
+      <group targetFramework="netstandard2.1">
+        <dependency id="Microsoft.Extensions.Hosting.Abstractions" version="3.1.0" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

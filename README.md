@@ -15,7 +15,7 @@ builder.WebHost.ConfigureServices(services =>
     services.AddAsyncServiceInitialization()
         .AddInitAction<IDatabaseService>(async (databaseService, cancellationToken) =>
         {
-            await databaseService.CreateIfNotExists(cancellationToken);
+            await databaseService.CreateIfNotExistsAsync(cancellationToken);
         });
 });
 ```
@@ -30,11 +30,11 @@ You can define multiple init actions and they will be executed sequentially in t
  services.AddAsyncServiceInitialization()
         .AddInitAction<IDatabaseService>(async (databaseService, cancellationToken) =>
         {
-            await databaseService.CreateIfNotExists(cancellationToken);
+            await databaseService.CreateIfNotExistsAsync(cancellationToken);
         })
         .AddInitAction<IDeviceClient>(async deviceClient =>
         {
-            await deviceClient.Initialize();
+            await deviceClient.InitializeAsync();
         });
 ```
 
@@ -44,13 +44,13 @@ It is also possible to define more services (max 5) for one init action in case 
  services.AddAsyncServiceInitialization()
         .AddInitAction<IDatabaseService, IDeviceClient>(async (databaseService, deviceClient) =>
         {
-            await deviceClient.PreInitialize();
+            await deviceClient.PreInitializeAsync();
             await Task.WhenAll(new []
             {
-                deviceClient.Initialize(),
-                databaseService.CreateIfNotExists(),
+                deviceClient.InitializeAsync(),
+                databaseService.CreateIfNotExistsAsync(),
             });
-            await deviceClient.ConnectToDevice(port: 1223);
+            await deviceClient.ConnectToDeviceAsync(port: 1223);
         });
 ```
 
