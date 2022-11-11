@@ -113,6 +113,7 @@ namespace HostInitActions
                 where TService1 : notnull
                 where TService2 : notnull
                 where TService3 : notnull
+                where TService4 : notnull
             {
                 _services.AddSingleton<IAsyncInitializationAction>(sp =>
                     new AsyncInitializationAction<TService1, TService2, TService3, TService4>(
@@ -143,6 +144,11 @@ namespace HostInitActions
             }
 
             public IInitActionCollection AddInitAction<TService1, TService2, TService3, TService4, TService5>(Func<TService1, TService2, TService3, TService4, TService5, CancellationToken, Task> initializationAction)
+                where TService1 : notnull
+                where TService2 : notnull
+                where TService3 : notnull
+                where TService4 : notnull
+                where TService5 : notnull
             {
                 _services.AddSingleton<IAsyncInitializationAction>(sp =>
                     new AsyncInitializationAction<TService1, TService2, TService3, TService4, TService5>(
@@ -157,6 +163,11 @@ namespace HostInitActions
             }
 
             public IInitActionCollection AddInitAction<TService1, TService2, TService3, TService4, TService5>(Func<TService1, TService2, TService3, TService4, TService5, Task> initializationAction)
+                where TService1 : notnull
+                where TService2 : notnull
+                where TService3 : notnull
+                where TService4 : notnull
+                where TService5 : notnull
             {
                 _services.AddSingleton<IAsyncInitializationAction>(sp =>
                     new AsyncInitializationAction<TService1, TService2, TService3, TService4, TService5>(
