@@ -12,7 +12,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Lukáš Oščádal</Authors>
-		<Version>1.0.3</Version>
+		<Version>1.1.0</Version>
 		<Description>Allows you to define asynchronous initialization actions for services in a Host's ServiceProvider</Description>
 		<PackageProjectUrl>https://github.com/oscadall/host-init-actions</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>

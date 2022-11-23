@@ -145,5 +145,16 @@ namespace HostInitActions
             where TService3 : notnull
             where TService4 : notnull
             where TService5 : notnull;
+
+        public IInitActionCollection AddInitExecutor<TInitExecutor>()
+            where TInitExecutor : class, IAsyncInitExecutor;
+
+        public IInitActionCollection AddInitExecutor<TInitExecutor>(
+            TInitExecutor initExecutor)
+            where TInitExecutor : class, IAsyncInitExecutor;
+
+        public IInitActionCollection AddInitExecutor<TInitActionClass>(
+            Func<IServiceProvider, TInitActionClass> factoryFunc)
+            where TInitActionClass : class, IAsyncInitExecutor;
     }
 }
