@@ -19,6 +19,7 @@
 		<RepositoryUrl>https://github.com/oscadall/host-init-actions</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>ASP.NET Core;async;host;service;initialization</PackageTags>
+		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -28,6 +29,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Include="..\..\icon.png">
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
 	  <None Include="..\..\README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
