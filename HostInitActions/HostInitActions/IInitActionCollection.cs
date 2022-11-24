@@ -146,15 +146,32 @@ namespace HostInitActions
             where TService4 : notnull
             where TService5 : notnull;
 
-        public IInitActionCollection AddInitExecutor<TInitExecutor>()
-            where TInitExecutor : class, IAsyncInitExecutor;
+        /// <summary>
+        /// Registers a class that performs the initialization action.
+        /// </summary>
+        /// <typeparam name="TInitActionExecutor">A class type implementing the <see cref="IAsyncInitActionExecutor"/> interface.</typeparam>
+        /// <returns>Collection for registering initialization actions.</returns>
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>()
+            where TInitActionExecutor : class, IAsyncInitActionExecutor;
 
-        public IInitActionCollection AddInitExecutor<TInitExecutor>(
-            TInitExecutor initExecutor)
-            where TInitExecutor : class, IAsyncInitExecutor;
+        /// <summary> 
+        /// Registers a class that performs the initialization action.
+        /// </summary>
+        /// <typeparam name="TInitActionExecutor">A class type implementing the <see cref="IAsyncInitActionExecutor"/> interface.</typeparam>
+        /// <param name="initActionExecutor">Executor instance.</param>
+        /// <returns>Collection for registering initialization actions.</returns>
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>(
+            TInitActionExecutor initActionExecutor)
+            where TInitActionExecutor : class, IAsyncInitActionExecutor;
 
-        public IInitActionCollection AddInitExecutor<TInitActionClass>(
-            Func<IServiceProvider, TInitActionClass> factoryFunc)
-            where TInitActionClass : class, IAsyncInitExecutor;
+        /// <summary> 
+        /// Registers a class that performs the initialization action.
+        /// </summary>
+        /// <typeparam name="TInitActionExecutor">A class type implementing the <see cref="IAsyncInitActionExecutor"/> interface.</typeparam>
+        /// <param name="factoryFunc">Factory method to create instance of current <typeparamref name="TInitActionExecutor"/>.</param>
+        /// <returns>Collection for registering initialization actions.</returns>
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>(
+            Func<IServiceProvider, TInitActionExecutor> factoryFunc)
+            where TInitActionExecutor : class, IAsyncInitActionExecutor;
     }
 }

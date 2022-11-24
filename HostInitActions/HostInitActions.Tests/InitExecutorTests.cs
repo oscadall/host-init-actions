@@ -30,7 +30,7 @@ namespace HostInitActions.Tests
                             {
                                 await service1.Init(default);
                             })
-                        .AddInitExecutor<TestAsyncInitExecutor>()
+                        .AddInitActionExecutor<TestAsyncInitExecutor>()
                         .AddInitAction<ITestInitService5>(
                             async (service5) =>
                             {
@@ -83,7 +83,7 @@ namespace HostInitActions.Tests
                             {
                                 await service1.Init(default);
                             })
-                        .AddInitExecutor(sp => new TestAsyncInitExecutor(
+                        .AddInitActionExecutor(sp => new TestAsyncInitExecutor(
                             sp.GetRequiredService<ITestInitService2>(),
                             sp.GetRequiredService<ITestInitService3>(),
                             sp.GetRequiredService<ITestInitService4>()))
@@ -147,7 +147,7 @@ namespace HostInitActions.Tests
                             {
                                 await s1.Init(default);
                             })
-                        .AddInitExecutor(executor)
+                        .AddInitActionExecutor(executor)
                         .AddInitAction<ITestInitService5>(
                             async s5 =>
                             {

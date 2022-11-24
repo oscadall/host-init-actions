@@ -17,7 +17,7 @@ namespace HostInitActions
         public IInitActionCollection AddInitAction<TService>(Func<TService, CancellationToken, Task> initializationAction)
             where TService : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService>(sp.GetRequiredService<TService>(), initializationAction));
 
             return this;
@@ -26,7 +26,7 @@ namespace HostInitActions
         public IInitActionCollection AddInitAction<TService>(Func<TService, Task> initializationAction)
             where TService : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService>(sp.GetRequiredService<TService>(), (s, ct) => initializationAction(s)));
 
             return this;
@@ -36,7 +36,7 @@ namespace HostInitActions
             where TService1 : notnull
             where TService2 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -49,7 +49,7 @@ namespace HostInitActions
             where TService1 : notnull
             where TService2 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -63,7 +63,7 @@ namespace HostInitActions
             where TService2 : notnull
             where TService3 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -78,7 +78,7 @@ namespace HostInitActions
             where TService2 : notnull
             where TService3 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -94,7 +94,7 @@ namespace HostInitActions
             where TService3 : notnull
             where TService4 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3, TService4>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -111,7 +111,7 @@ namespace HostInitActions
             where TService3 : notnull
             where TService4 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3, TService4>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -129,7 +129,7 @@ namespace HostInitActions
             where TService4 : notnull
             where TService5 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3, TService4, TService5>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -148,7 +148,7 @@ namespace HostInitActions
             where TService4 : notnull
             where TService5 : notnull
         {
-            _services.AddSingleton<IAsyncInitExecutor>(sp =>
+            _services.AddSingleton<IAsyncInitActionExecutor>(sp =>
                 new AsyncInitAction<TService1, TService2, TService3, TService4, TService5>(
                     sp.GetRequiredService<TService1>(),
                     sp.GetRequiredService<TService2>(),
@@ -160,24 +160,24 @@ namespace HostInitActions
             return this;
         }
 
-        public IInitActionCollection AddInitExecutor<TInitExecutor>()
-            where TInitExecutor : class, IAsyncInitExecutor
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>()
+            where TInitActionExecutor : class, IAsyncInitActionExecutor
         {
-            _services.AddSingleton<IAsyncInitExecutor, TInitExecutor>();
+            _services.AddSingleton<IAsyncInitActionExecutor, TInitActionExecutor>();
             return this;
         }
 
-        public IInitActionCollection AddInitExecutor<TInitExecutor>(TInitExecutor initExecutor)
-            where TInitExecutor : class, IAsyncInitExecutor
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>(TInitActionExecutor initExecutor)
+            where TInitActionExecutor : class, IAsyncInitActionExecutor
         {
-            _services.AddSingleton<IAsyncInitExecutor>(initExecutor);
+            _services.AddSingleton<IAsyncInitActionExecutor>(initExecutor);
             return this;
         }
 
-        public IInitActionCollection AddInitExecutor<TInitActionClass>(Func<IServiceProvider, TInitActionClass> factoryFunc)
-            where TInitActionClass : class, IAsyncInitExecutor
+        public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>(Func<IServiceProvider, TInitActionExecutor> factoryFunc)
+            where TInitActionExecutor : class, IAsyncInitActionExecutor
         {
-            _services.AddSingleton<IAsyncInitExecutor>(factoryFunc);
+            _services.AddSingleton<IAsyncInitActionExecutor>(factoryFunc);
             return this;
         }
     }

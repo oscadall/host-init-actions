@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HostInitActions.Tests.TestServices
 {
-    internal class TestAsyncInitExecutor : IAsyncInitExecutor
+    internal class TestAsyncInitExecutor : IAsyncInitActionExecutor
     {
         private readonly ITestInitService2 _testInitService2;
         private readonly ITestInitService3 _testInitService3;

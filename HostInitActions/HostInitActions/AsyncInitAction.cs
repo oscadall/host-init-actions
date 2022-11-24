@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace HostInitActions
 {
-    internal class AsyncInitAction<TService> : IAsyncInitExecutor
+    internal class AsyncInitAction<TService> : IAsyncInitActionExecutor
     {
         private readonly TService _service;
         private readonly Func<TService, CancellationToken, Task> _action;
@@ -21,7 +21,7 @@ namespace HostInitActions
         }
     }
 
-    internal class AsyncInitAction<TService1, TService2> : IAsyncInitExecutor
+    internal class AsyncInitAction<TService1, TService2> : IAsyncInitActionExecutor
     {
         private readonly TService1 _service1;
         private readonly TService2 _service2;
@@ -40,7 +40,7 @@ namespace HostInitActions
         }
     }
 
-    internal class AsyncInitAction<TService1, TService2, TService3> : IAsyncInitExecutor
+    internal class AsyncInitAction<TService1, TService2, TService3> : IAsyncInitActionExecutor
     {
         private readonly TService1 _service1;
         private readonly TService2 _service2;
@@ -61,7 +61,7 @@ namespace HostInitActions
         }
     }
 
-    internal class AsyncInitAction<TService1, TService2, TService3, TService4> : IAsyncInitExecutor
+    internal class AsyncInitAction<TService1, TService2, TService3, TService4> : IAsyncInitActionExecutor
     {
         private readonly TService1 _service1;
         private readonly TService2 _service2;
@@ -89,7 +89,7 @@ namespace HostInitActions
         }
     }
 
-    internal class AsyncInitAction<TService1, TService2, TService3, TService4, TService5> : IAsyncInitExecutor
+    internal class AsyncInitAction<TService1, TService2, TService3, TService4, TService5> : IAsyncInitActionExecutor
     {
         private readonly TService1 _service1;
         private readonly TService2 _service2;

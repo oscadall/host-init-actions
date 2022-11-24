@@ -7,9 +7,9 @@ namespace HostInitActions
 {
     internal class InitHostedService : IHostedService
     {
-        private readonly IEnumerable<IAsyncInitExecutor> _initActions;
+        private readonly IEnumerable<IAsyncInitActionExecutor> _initActions;
 
-        public InitHostedService(IEnumerable<IAsyncInitExecutor> initActions)
+        public InitHostedService(IEnumerable<IAsyncInitActionExecutor> initActions)
         {
             _initActions = initActions;
         }

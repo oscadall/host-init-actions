@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace HostInitActions
 {
-    public interface IAsyncInitExecutor
+    public interface IAsyncInitActionExecutor
     {
         Task ExecuteAsync(CancellationToken cancellationToken);
     }
