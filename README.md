@@ -54,8 +54,42 @@ It is also possible to define more services (max 5) for one init action in case 
         });
 ```
 
+## Initialization executors
+
+Another way to perform an initialization action with multiple dependencies is the custom implementation of the ```IAsyncInitActionExecutor``` interface. This requires implementing only the ```ExecuteAsync``` method that executes your initialization logic. The dependencies needed to perform the initialization action are defined as class dependencies using the constructor and are injected from the IoC container.
+
+```csharp
+    public class MyInitActionExecutor : IAsyncInitActionExecutor
+    {
+        private readonly IDependency1 _d1;
+        private readonly IDependency2 _d2;
+        ...
+        private readonly IConfig _config;
+
+        public MyInitActionExecutor(IDependency1 d1, IDependency2 d2, ... , IConfig config) {...}
+
+        public async Task ExecuteAsync(CancellationToken cancellationToken)
+        {
+            await _d1.SomeAsyncAction(_config.SomeValue);
+            await _d2.OtherAsyncAction(_config.OtherValue);
+            ...
+        }
+    }
+```
+
+Registering custom ```IAsyncInitActionExecutor``` is done using one of the ```AddInitActionExecutor``` method overloads on ```IInitActionCollection```.
+
+```csharp
+    services.AddAsyncServiceInitialization()
+        .AddInitActionExecutor<MyInitActionExecutor>()
+        .AddInitActionExecutor(otherExecutorInstance)
+        .AddInitActionExecutor(serviceProvider => new LastExecutor(...));
+```
+
+You can freely combine registrations using ```AddInitAction``` and ```AddInitActionExecutor```. The execution order of initialization actions and initialization executors is still defined by the order of registration.
+
 ## Invocation of init actions
 
 Init actions are executed before:
 - The app's request processing pipeline is configured.
-- The server is started and IApplicationLifetime.ApplicationStarted is triggered.
+- The server is started and ```IApplicationLifetime.ApplicationStarted``` is triggered.
