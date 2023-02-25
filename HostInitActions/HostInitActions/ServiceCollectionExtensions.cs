@@ -1,8 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace HostInitActions
 {
@@ -15,13 +12,11 @@ namespace HostInitActions
         /// <returns>Collection for registering initialization actions.</returns>
         public static IInitActionCollection AddAsyncServiceInitialization(this IServiceCollection services)
         {
-            var initServiceRegistered =
-                services.Any(descriptor => descriptor.ImplementationType == typeof(InitHostedService));
+            // It must be ensured that the singleton service is registered only once
+            services.TryAddSingleton<InitExecutionService>();
 
-            if (!initServiceRegistered)
-            {
-                services.AddHostedService<InitHostedService>();
-            }
+            // Multiple invocations of "AddHostedService" with the same type will only perform one registration
+            services.AddHostedService<InitHostedService>();
 
             return new InitServiceCollection(services);
         }

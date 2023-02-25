@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Hosting;
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,19 +6,16 @@ namespace HostInitActions
 {
     internal class InitHostedService : IHostedService
     {
-        private readonly IEnumerable<IAsyncInitActionExecutor> _initActions;
+        private readonly InitExecutionService _initExecutionService;
 
-        public InitHostedService(IEnumerable<IAsyncInitActionExecutor> initActions)
+        public InitHostedService(InitExecutionService initExecutionService)
         {
-            _initActions = initActions;
+            _initExecutionService = initExecutionService;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            foreach (var initAction in _initActions)
-            {
-                await initAction.ExecuteAsync(cancellationToken);
-            }
+            await _initExecutionService.ExecuteInitActionsAsync(cancellationToken);
         }
 
         public Task StopAsync(CancellationToken cancellationToken)

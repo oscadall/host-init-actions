@@ -12,13 +12,13 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<Authors>Lukáš Oščádal</Authors>
-		<Version>1.1.0</Version>
-		<Description>Allows you to define asynchronous initialization actions for services in a Host's ServiceProvider</Description>
+		<Version>1.2.0</Version>
+		<Description>Allows you to define asynchronous initialization actions for services in a Host's IServiceProvider</Description>
 		<PackageProjectUrl>https://github.com/oscadall/host-init-actions</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/oscadall/host-init-actions</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
-		<PackageTags>ASP.NET Core;async;host;service;initialization</PackageTags>
+		<PackageTags>ASP.NETCore;.NETCore;async;host;service;singleton;initialization</PackageTags>
 		<PackageIcon>icon.png</PackageIcon>
 	</PropertyGroup>
 

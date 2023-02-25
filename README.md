@@ -93,3 +93,20 @@ You can freely combine registrations using ```AddInitAction``` and ```AddInitAct
 Init actions are executed before:
 - The app's request processing pipeline is configured.
 - The server is started and ```IApplicationLifetime.ApplicationStarted``` is triggered.
+- The Kestrel is started (in WebHost)
+
+## Explicit invocation of init actions
+
+For applications or tests that do not run in the Host's environment but only use the SecviceCollection container to provide dependency injection, it is possible to explicitly invoke the execution of registered init actions directly on the ServiceProvider.
+
+```csharp
+    services.AddServicesThatRegisterSomeInitActionsInternally()
+    ...
+    var serviceProvider = services.BuildServiceProvider();
+
+    // Performs all initialization actions, if any are registered.
+    await serviceProvider.ExecuteInitActionsAsync();
+    ...
+```
+
+Thanks to the ability to explicitly invoke init actions on the ```IServiceProvider```, you can take advantage of the abstraction offered by the library even if your application uses only ```ServiceCollection```. Also, in tests it is not necessary to run the ```Host``` instance to execute all init actions but you can simplify the test by simply using the ```ServiceCollection``` and the ```ExecuteInitActionsAsync``` method on the built ```IServiceProvider```.
