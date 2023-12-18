@@ -1,11 +1,10 @@
-﻿using System;
+﻿using System.Threading.Tasks;
 using System.Threading;
-using System.Threading.Tasks;
-using HostInitActions.Stages;
+using System;
 
-namespace HostInitActions
+namespace HostInitActions.Stages
 {
-    public interface IInitActionCollection
+    public interface IInitStage
     {
         /// <summary>
         /// Registers a new initialization action.
@@ -174,13 +173,5 @@ namespace HostInitActions
         public IInitActionCollection AddInitActionExecutor<TInitActionExecutor>(
             Func<IServiceProvider, TInitActionExecutor> factoryFunc)
             where TInitActionExecutor : class, IAsyncInitActionExecutor;
-
-        /// <summary>
-        /// Returns an instance of the initialization stage into which initialization actions can be registered that will be run in parallel
-        /// within the stage. If the stage with the given key does not exist it will first create it and then return it.
-        /// </summary>
-        /// <param name="stageKey">Unique instance of the key identifying the stage</param>
-        /// <returns>Instance initialization stage for the given key</returns>
-        public IInitStage GetOrAddStage(object stageKey);
     }
 }
