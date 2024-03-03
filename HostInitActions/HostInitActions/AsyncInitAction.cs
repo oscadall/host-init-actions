@@ -70,10 +70,10 @@ namespace HostInitActions
         private readonly Func<TService1, TService2, TService3, TService4, CancellationToken, Task> _action;
 
         public AsyncInitAction(
-            TService1 service1, 
-            TService2 service2, 
-            TService3 service3, 
-            TService4 service4, 
+            TService1 service1,
+            TService2 service2,
+            TService3 service3,
+            TService4 service4,
             Func<TService1, TService2, TService3, TService4, CancellationToken, Task> action)
         {
             _service1 = service1;

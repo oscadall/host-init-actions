@@ -181,6 +181,6 @@ namespace HostInitActions
         /// </summary>
         /// <param name="stageKey">Unique instance of the key identifying the stage</param>
         /// <returns>Instance initialization stage for the given key</returns>
-        public IInitStage GetOrAddStage(object stageKey);
+        public IInitStageActionCollection GetOrAddStage(object stageKey);
     }
 }
