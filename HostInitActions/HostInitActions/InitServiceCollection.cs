@@ -16,7 +16,7 @@ namespace HostInitActions
         {
             _services = services;
 
-            var context = _services.FirstOrDefault(x => x.ImplementationInstance is InitContext)?.ImplementationInstance;
+            var context = _services.Where(x => !x.IsKeyedService).FirstOrDefault(x => x.ImplementationInstance is InitContext)?.ImplementationInstance;
             if (context == null)
             {
                 _context = new InitContext();
