@@ -233,11 +233,11 @@ namespace HostInitActions.Tests
                 .ConfigureServices(services =>
                 {
                     services
-                        .AddScoped<StageTestService1>()
-                        .AddScoped<StageTestService2>()
-                        .AddScoped<StageTestService3>()
-                        .AddScoped<StageTestService4>()
-                        .AddScoped<StageTestService5>();
+                        .AddSingleton<StageTestService1>()
+                        .AddSingleton<StageTestService2>()
+                        .AddSingleton<StageTestService3>()
+                        .AddSingleton<StageTestService4>()
+                        .AddSingleton<StageTestService5>();
 
                     var initActionCollection = services.AddAsyncServiceInitialization();
 

@@ -93,7 +93,7 @@ You can freely combine registrations using ```AddInitAction``` and ```AddInitAct
 Always consider using init stages when registering your initialization actions. Init stage is a set of actions that will be run in parallel during initialization. Creating a stage is done by calling the ```GetOrAddStage``` method which accepts a key that allows to return to the stage and register other actions to it again. Different methods can then use the same key to register other init actions to the same stage, which will then be run in parallel to maximize the benefits of asynchronous code. 
 
 ```csharp
-    var stageKey = "default-stage"
+    var stageKey = "default-stage";
 
     services.AddAsyncServiceInitialization()
         .GetOrAddStage(stageKey)
@@ -116,15 +116,15 @@ Stage behaves like a normal initialization action in terms of other initializati
 But, the stages give the possibility to influence in advance the order in which the stages will be executed. This is possible because the stage is already created by calling the ```GetOrAddStage``` method. This makes it possible to first pre-create all init stages and then register all initialization actions into them.
 
 ```csharp
-    var stage1Key = "stage-1"
-    var stage2Key = "stage-2"
-    var stage3Key = "stage-3"
+    var stage1Key = "stage-1";
+    var stage2Key = "stage-2";
+    var stage3Key = "stage-3";
 
     // pre-creation of stages
     services.AddAsyncServiceInitialization()
         .GetOrAddStage(stag1eKey)
         .GetOrAddStage(stag2eKey)
-        .GetOrAddStage(stag3eKey)
+        .GetOrAddStage(stag3eKey);
 
     //registration of init actions with a pre-guaranteed order
     services.AddAsyncServiceInitialization()
@@ -157,7 +157,7 @@ Init actions are executed before:
 For applications or tests that do not run in the Host's environment but only use the SecviceCollection container to provide dependency injection, it is possible to explicitly invoke the execution of registered init actions directly on the ServiceProvider.
 
 ```csharp
-    services.AddServicesThatRegisterSomeInitActionsInternally()
+    services.AddServicesThatRegisterSomeInitActionsInternally();
     ...
     var serviceProvider = services.BuildServiceProvider();
 
